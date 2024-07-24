@@ -6,7 +6,7 @@ import pandas as pd
 # Function to calculate the NPV of the loan cash flows at a given monthly interest rate
 def npv_of_loan(monthly_rate, loan_amount, monthly_payment, loan_period_months):
     npv = loan_amount
-    for i in range(1, loan_period_months + 1):
+    for i in range(1, loan_period_months + 12):
         npv -= monthly_payment / ((1 + monthly_rate) ** i)
     return npv
 

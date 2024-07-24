@@ -1,0 +1,17 @@
+[server]
+headless = true
+
+[theme]
+base="light"
+
+[global]
+disableWatchdogWarning = true
+
+[client]
+showForkButton = false
+
+[runner]
+magicEnabled = false
+
+[browser]
+gatherUsageStats = false
