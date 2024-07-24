@@ -2,16 +2,24 @@ import streamlit as st
 import numpy as np
 from scipy.optimize import fsolve
 import pandas as pd
-import toml
 
-# Load configuration
-config = toml.load("config.toml")
+# Set the page config first
+st.set_page_config(page_title="EMI Rate Calculator", page_icon=":moneybag:", layout="wide")
 
+# Inject custom CSS to hide menu options
+hide_streamlit_style = """
+    <style>
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    .viewerBadge_container__1QSob {display: none;}
+    </style>
+"""
+st.markdown(hide_streamlit_style, unsafe_allow_html=True)
 
 # Function to calculate the NPV of the loan cash flows at a given monthly interest rate
 def npv_of_loan(monthly_rate, loan_amount, monthly_payment, loan_period_months):
     npv = loan_amount
-    for i in range(1, loan_period_months + 12):
+    for i in range(1, loan_period_months + 1):
         npv -= monthly_payment / ((1 + monthly_rate) ** i)
     return npv
 
@@ -41,9 +49,6 @@ def calculate_total_interest_paid(loan_amount, monthly_payment, monthly_rate, lo
         })
 
     return total_interest_paid, details
-
-# Streamlit App
-st.set_page_config(page_title="EMI Rate Calculator", page_icon=":moneybag:", layout="wide")
 
 # Title and Introduction
 st.title("EMI Implicit Rate Calculator")
