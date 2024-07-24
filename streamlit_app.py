@@ -2,6 +2,11 @@ import streamlit as st
 import numpy as np
 from scipy.optimize import fsolve
 import pandas as pd
+import toml
+
+# Load configuration
+config = toml.load("config.toml")
+
 
 # Function to calculate the NPV of the loan cash flows at a given monthly interest rate
 def npv_of_loan(monthly_rate, loan_amount, monthly_payment, loan_period_months):
