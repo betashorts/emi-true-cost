@@ -1,4 +1,5 @@
 import streamlit as st
+import streamlit.components.v1 as components
 import numpy as np
 from scipy.optimize import fsolve
 import pandas as pd
@@ -15,6 +16,25 @@ hide_streamlit_style = """
     </style>
 """
 st.markdown(hide_streamlit_style, unsafe_allow_html=True)
+
+# Function to add Google Analytics
+def add_ga():
+    GA_ID = 'G-MH4RDWC22J'  # Replace with your Google Analytics ID
+    ga_code = f"""
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={GA_ID}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){{dataLayer.push(arguments);}}
+      gtag('js', new Date());
+
+      gtag('config', '{GA_ID}');
+    </script>
+    """
+    components.html(ga_code, height=0, width=0)
+
+# Call the function to add Google Analytics
+add_ga()
 
 # Function to calculate the NPV of the loan cash flows at a given monthly interest rate
 def npv_of_loan(monthly_rate, loan_amount, monthly_payment, loan_period_months):
@@ -114,11 +134,11 @@ if st.button("Calculate Implicit Rate"):
     If you found this tool helpful, please consider supporting the project. Your contributions help us maintain and improve this service.
     """)
 
-    # PayPal Buy Me a Coffee button/link
-    buy_me_coffee_link = "https://www.paypal.com/ncp/payment/EMZTCUL85J8WE"  # Replace with your PayPal Buy Me a Coffee link
+    # Buy Me a Coffee button/link
+    buy_me_coffee_link ="https://www.paypal.com/ncp/payment/EMZTCUL85J8WE"  # Replace with your Buy Me a Coffee link
     st.markdown(f"""
     <a href="{buy_me_coffee_link}" target="_blank">
-        <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donate_LG.gif" alt="Buy Me a Coffee" />
+        <img src="https://www.buymeacoffee.com/assets/img/guidelines/logo-mark-3.svg" alt="Buy Me a Coffee" style="width: 150px;"/>
     </a>
     """, unsafe_allow_html=True)
     
