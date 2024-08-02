@@ -109,6 +109,73 @@ if st.button("Calculate Implicit Rate"):
     st.write(f"**Equivalent Annual Interest Rate:** {annual_rate_solution * 100:.2f}%")
     st.write(f"**Total Interest Paid:** {total_interest_paid:.2f}")
 
+    # Add Circular Progress Bars
+    progress_bar_code = f"""
+    <div style="display: flex; justify-content: space-around; margin-top: 20px;">
+        <div>
+            <h3>Advertised Interest Rate</h3>
+            <div style="position: relative; width: 150px; height: 150px;">
+                <svg viewBox="0 0 36 36" width="100%" height="100%">
+                    <path
+                      d="M18 2.0845
+                         a 15.9155 15.9155 0 0 1 0 31.831
+                         a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="#eee"
+                      stroke-width="3.8"
+                      stroke-dasharray="100, 100"
+                      stroke-dashoffset="0"
+                    />
+                    <path
+                      d="M18 2.0845
+                         a 15.9155 15.9155 0 0 1 0 31.831
+                         a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="#00bfff"
+                      stroke-width="3.8"
+                      stroke-dasharray="8, 100"
+                      stroke-dashoffset="0"
+                    />
+                </svg>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px;">
+                    8%
+                </div>
+            </div>
+        </div>
+        <div>
+            <h3>Actual Interest Rate</h3>
+            <div style="position: relative; width: 150px; height: 150px;">
+                <svg viewBox="0 0 36 36" width="100%" height="100%">
+                    <path
+                      d="M18 2.0845
+                         a 15.9155 15.9155 0 0 1 0 31.831
+                         a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="#eee"
+                      stroke-width="3.8"
+                      stroke-dasharray="100, 100"
+                      stroke-dashoffset="0"
+                    />
+                    <path
+                      d="M18 2.0845
+                         a 15.9155 15.9155 0 0 1 0 31.831
+                         a 15.9155 15.9155 0 0 1 0 -31.831"
+                      fill="none"
+                      stroke="#ff4500"
+                      stroke-width="3.8"
+                      stroke-dasharray="{annual_rate_solution * 100}, 100"
+                      stroke-dashoffset="0"
+                    />
+                </svg>
+                <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 20px;">
+                    {annual_rate_solution * 100:.2f}%
+                </div>
+            </div>
+        </div>
+    </div>
+    """
+    st.markdown(progress_bar_code, unsafe_allow_html=True)
+
     # Explanation of the table
     st.write("""
     ### Understanding Your EMI Breakdown
