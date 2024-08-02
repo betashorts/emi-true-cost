@@ -4,8 +4,12 @@ import numpy as np
 from scipy.optimize import fsolve
 import pandas as pd
 
-# Set the page config first
-st.set_page_config(page_title="EMI Rate Calculator", page_icon=":moneybag:", layout="wide")
+# Set the page config first, including the new favicon
+st.set_page_config(
+    page_title="EMI Rate Calculator",
+    page_icon="icon.png",  # Ensure this matches the path where your icon is stored
+    layout="wide"
+)
 
 # Inject custom CSS to hide menu options
 hide_streamlit_style = """
